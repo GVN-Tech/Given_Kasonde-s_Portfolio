@@ -2,7 +2,9 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Merriweather, Open_Sans } from "next/font/google";
 import "./globals.css";
-import GoogleAnalytics from "@/components/GoogleAnalytics"; // import client component
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+ // import client component
+ import { Analytics } from "@vercel/analytics/next"
 
 const merriweather = Merriweather({
   subsets: ["latin"],
