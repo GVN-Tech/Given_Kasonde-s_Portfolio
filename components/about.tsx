@@ -87,7 +87,7 @@ export function About() {
                   <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 group-hover:from-red-500/20 to-purple-500/10 group-hover:to-purple-500/20 transition-colors duration-500" />
                   <div className="z-10 relative rounded-full w-full h-full overflow-hidden">
                     <img
-                      src="./Given_Kasonde.jpg"
+                      src="/Given_Kasonde.jpg"
                       alt="Swift GvN-Given_Kasonde"
                       className="opacity-0 rounded-full w-full h-full object-cover"
                       onLoad={(e) => {
