@@ -6,6 +6,12 @@ import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 const merriweather = Merriweather({
   subsets: ["latin"],
   display: "swap",
@@ -46,26 +52,22 @@ export const metadata: Metadata = {
   generator: "Next.js",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   // Track SPA route changes
   useEffect(() => {
-    if (typeof window.gtag === "function") {
-      window.gtag("config", "G-P90LDJP987", {
-        page_path: pathname,
-      });
-    }
+    const interval = setInterval(() => {
+      if (typeof window.gtag === "function") {
+        window.gtag("config", "G-P90LDJP987", { page_path: pathname });
+        clearInterval(interval);
+      }
+    }, 100);
   }, [pathname]);
 
   return (
     <html lang="en" className={`${merriweather.variable} ${openSans.variable} antialiased`}>
       <head>
-        {/* Google Analytics */}
         <Script
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-P90LDJP987"
@@ -75,7 +77,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-P90LDJP987');
+            gtag('config', 'G-P90LDJP987', { debug_mode: true });
           `}
         </Script>
       </head>
