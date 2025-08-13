@@ -28,5 +28,29 @@ export const metadata: Metadata = {
   creator: "Swift GvN",
   openGraph: {
     title: "Swift GvN - Frontend Developer Portfolio",
-    descript
+    description: "Self-taught Frontend Developer specializing in modern web technologies",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swift GvN - Frontend Developer Portfolio",
+    description: "Self-taught Frontend Developer specializing in modern web technologies",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  generator: "Next.js",
+};
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${merriweather.variable} ${openSans.variable} antialiased`}>
+      <body className="font-sans">
+        <GoogleAnalytics /> {/* Client component for GA */}
+        {children}
+      </body>
+    </html>
+  );
+}
