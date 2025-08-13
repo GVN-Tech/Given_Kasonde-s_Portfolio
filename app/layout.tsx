@@ -5,6 +5,7 @@ import "./globals.css";
 import Script from "next/script";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/next"
 
 declare global {
   interface Window {
