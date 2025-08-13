@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function About() {
   return (
     <section id="about" className="relative bg-transparent py-24 overflow-hidden">
@@ -86,17 +88,19 @@ export function About() {
                 <div className="relative flex justify-center items-center bg-gradient-to-br from-slate-800 to-slate-700 border border-slate-600 rounded-full w-80 h-80 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 group-hover:from-red-500/20 to-purple-500/10 group-hover:to-purple-500/20 transition-colors duration-500" />
                   <div className="z-10 relative rounded-full w-full h-full overflow-hidden">
-                    <img
+                    <Image
                       src="/Given_Kasonde.jpg"
                       alt="Swift GvN-Given_Kasonde"
-                      className="opacity-0 rounded-full w-full h-full object-cover"
-                      onLoad={(e) => {
-                        // Show image when loaded, hide fallback
-                        e.currentTarget.style.opacity = "1"
-                        e.currentTarget.nextElementSibling.style.display = "none"
+                      className="rounded-full w-full h-full object-cover"
+                      width={320}
+                      height={320}
+                      priority
+                      onLoad={() => {
+                        const fallback = document.querySelector('.about-fallback') as HTMLDivElement | null;
+                        if (fallback) fallback.style.display = "none";
                       }}
                     />
-                    <div className="absolute inset-0 flex justify-center items-center bg-gradient-to-br from-slate-800 to-slate-700 rounded-full">
+                    <div className="absolute inset-0 flex justify-center items-center bg-gradient-to-br from-slate-800 to-slate-700 rounded-full about-fallback">
                       <div className="text-center">
                         <div className="bg-clip-text bg-gradient-to-r from-red-500 to-purple-500 mb-3 font-serif font-bold text-transparent text-7xl">
                           SG
