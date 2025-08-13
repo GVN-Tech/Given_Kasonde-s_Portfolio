@@ -1,3 +1,12 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P90LDJP987"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P90LDJP987');
+</script>
 import type React from "react"
 import type { Metadata } from "next"
 import { Merriweather, Open_Sans } from "next/font/google"
