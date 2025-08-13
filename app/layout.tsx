@@ -1,18 +1,8 @@
-
 import type React from "react";
 import type { Metadata } from "next";
 import { Merriweather, Open_Sans } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-import { Analytics } from "@vercel/analytics/next"
-
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
+import GoogleAnalytics from "@/components/GoogleAnalytics"; // import client component
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -38,52 +28,5 @@ export const metadata: Metadata = {
   creator: "Swift GvN",
   openGraph: {
     title: "Swift GvN - Frontend Developer Portfolio",
-    description: "Self-taught Frontend Developer specializing in modern web technologies",
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Swift GvN - Frontend Developer Portfolio",
-    description: "Self-taught Frontend Developer specializing in modern web technologies",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  generator: "Next.js",
-};
+    descript
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-
-  // Track SPA route changes
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (typeof window.gtag === "function") {
-        window.gtag("config", "G-P90LDJP987", { page_path: pathname });
-        clearInterval(interval);
-      }
-    }, 100);
-  }, [pathname]);
-
-  return (
-    <html lang="en" className={`${merriweather.variable} ${openSans.variable} antialiased`}>
-      <head>
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-P90LDJP987"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-P90LDJP987', { debug_mode: true });
-          `}
-        </Script>
-      </head>
-      <body className="font-sans">{children}</body>
-    </html>
-  );
-}
